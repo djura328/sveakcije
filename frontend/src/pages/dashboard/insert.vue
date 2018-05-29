@@ -164,7 +164,8 @@
                                 price: this.price,
                                 price_discount: this.priceDiscount,
                                 discount: this.discount,
-                                img: nameImage
+                                img: nameImage,
+                                data: JSON.stringify(this.options)
                             }).then(res => {
                                 console.log(res)
                             })

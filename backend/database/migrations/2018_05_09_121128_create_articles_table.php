@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->json('data')->nullable($value = true);
             $table->string('img');
             $table->integer('company_id');
             $table->integer('category_id');
