@@ -4,13 +4,13 @@
             <v-form ref="form" v-model="valid" lazy-validation>
                 <v-card color="grey lighten-4" flat height="auto" tile>
                     <v-toolbar dense color="blue lighten-1">
-                        <v-toolbar-title class="white--text">Second page</v-toolbar-title>
+                        <v-toolbar-title class="white--text">First page</v-toolbar-title>
                     </v-toolbar>
                     <div class="px-2">
                     <v-text-field
                             v-model="name"
                             :rules="nameRules"
-                            :counter="10"
+                            :counter="30"
                             label="Name"
                             required
                     ></v-text-field>
@@ -18,6 +18,14 @@
                             v-model="description"
                             :rules="nameRules"
                             label="Description"
+                            :counter="30"
+                            required
+                    ></v-text-field>
+                    <v-text-field
+                            v-model="link"
+                            :rules="nameRules"
+                            label="link"
+                            :counter="100"
                             required
                     ></v-text-field>
                     <v-select
@@ -127,7 +135,7 @@
                 discount:'',
                 nameRules: [
                     v => !!v || 'Name is required',
-                    v => (v && v.length <= 10) || 'Name must be less than 10 characters'
+                    /*v => (v && v.length <= 30) || 'Name must be less than 10 characters'*/
                 ],
                 itemsCompany:[],
                 itemsCategory:[],
@@ -159,6 +167,7 @@
                             axios.post('http://localhost:8000/api/articles', {
                                 name: this.name,
                                 description: this.description,
+                                link: this.link,
                                 company_id: this.company,
                                 category_id: this.category,
                                 price: this.price,

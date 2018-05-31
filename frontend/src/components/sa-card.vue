@@ -1,7 +1,7 @@
 <template>
     <v-card>
         <!--<v-card-media :src="'/static/images/' + article.img" class="custom-card" height="162px"></v-card-media>-->
-        <v-card-media :src="'http://localhost:8000/storage/' + article.img" class="custom-card" height="162px"></v-card-media>
+        <v-card-media :src="'http://localhost:8000/storage/small/' + article.img" class="custom-card" height="162px"></v-card-media>
         <v-card-title primary-title>
             <v-layout row wrap>
                 <v-flex xs12>

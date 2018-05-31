@@ -19,6 +19,7 @@ class CreateArticlesTable extends Migration
             $table->text('description');
             $table->json('data')->nullable($value = true);
             $table->string('img');
+            $table->text('link');
             $table->integer('company_id');
             $table->integer('category_id');
             $table->float('price');

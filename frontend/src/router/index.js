@@ -20,8 +20,8 @@ export default new Router({
       }
     },
     {
-        path: '/article',
-        name: 'article',
+        path: '/article/:id',
+        name: 'article-id',
         component: Article
     },
     {

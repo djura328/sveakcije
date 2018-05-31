@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 use Request;
 use App\Article;
+use Image;
 
 class ArticleController extends Controller
 {
@@ -37,7 +38,7 @@ class ArticleController extends Controller
     public function store(\Illuminate\Http\Request $request)
     {
         $article = Article::create($request->all());
-
+        $article->data = json_decode($article->data, true);
         if($article) return 'ok';
     }
 
@@ -49,7 +50,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::with('company')->where('id', $id)->first();
+        $article->data = json_decode($article->data, true);
+        return $article;
     }
 
     /**
@@ -88,10 +91,20 @@ class ArticleController extends Controller
 
     public function uplaodImage(Request $request)
     {
-        $name =  Request::file('image')->getClientOriginalName();
+       /* $name =  Request::file('image')->getClientOriginalName();
         Request::file('image')->move(public_path('storage'), $name);
 
-        return collect(['name' => $name]);
+        return collect(['name' => $name]);*/
+
+        $image       = Request::file('image');
+        $filename    = $image->getClientOriginalName();
+        $image->move(public_path('storage'), $filename);
+
+        $image_resize = Image::make('storage/'.$filename);
+        $image_resize->resize(160, 160);
+        $image_resize->save(public_path('storage/small/' .$filename));
+
+        return collect(['name' => $filename]);
     }
 
 }
