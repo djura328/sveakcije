@@ -14,7 +14,7 @@
                             <v-divider></v-divider>
                         </v-flex>
                         <v-flex xs12 px-4>
-                            <v-layout row wrap>
+                            <v-layout row wrap align-baseline>
                                 <v-flex xs3>
                                     Price:
                                 </v-flex>
@@ -26,12 +26,23 @@
                                 </v-flex>
                                 <v-flex class="headline xs9 blue--text">
                                     <b>{{article.price_discount}} RSD</b>
-                                    <span class="grey--text subheading"> / kom</span>
-                                    <span>{{article.discount}}%</span>
+                                    <div>
+                                        <v-btn class="subheading ma-0 pa-0" small color="error">{{article.discount}}%</v-btn>
+                                    </div>
                                 </v-flex>
                                 <v-flex xs3>Prodavac:</v-flex>
                                 <v-flex xs9 v-if="article.company">
                                     {{article.company.name}}
+                                </v-flex>
+                                <v-flex xs3>Link:</v-flex>
+                                <v-flex xs9 v-if="article.company">
+                                    <a :href="article.company.link">{{article.company.link}}</a>
+                                </v-flex>
+                                <v-flex xs3></v-flex>
+                                <v-flex xs9 v-if="article.company">
+                                    <a :href="article.link" target="_blank">
+                                        <v-btn color="error" dark class="ma-0 pa-0">Link ponude</v-btn>
+                                    </a>
                                 </v-flex>
                             </v-layout>
                         </v-flex>
