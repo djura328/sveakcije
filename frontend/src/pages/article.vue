@@ -4,7 +4,7 @@
             <v-layout row wrap>
                 <v-flex sm4>
                     <v-card>
-                        <v-card-media :src="'http://localhost:8000/storage/' + article.img" height="400px"></v-card-media>
+                        <v-card-media v-if="article.img" :src="'http://localhost:8000/storage/' + article.img" height="400px"></v-card-media>
                     </v-card>
                 </v-flex>
                 <v-flex sm8>
@@ -16,16 +16,16 @@
                         <v-flex xs12 px-4>
                             <v-layout row wrap align-baseline>
                                 <v-flex xs3>
-                                    Price:
+                                    Cena:
                                 </v-flex>
-                                <v-flex xs9 style="text-decoration: line-through;">
-                                    {{article.price}} RSD
+                                <v-flex xs9 style="text-decoration: line-through;" v-if="article.price">
+                                    {{article.price.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}} RSD
                                 </v-flex>
                                 <v-flex xs3>
-                                    Discount Price:
+                                    Cena sa popustom:
                                 </v-flex>
-                                <v-flex class="headline xs9 blue--text">
-                                    <b>{{article.price_discount}} RSD</b>
+                                <v-flex class="headline xs9 blue--text" v-if="article.price_discount">
+                                    <b>{{article.price_discount.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}} RSD</b>
                                     <div>
                                         <v-btn class="subheading ma-0 pa-0" small color="error">{{article.discount}}%</v-btn>
                                     </div>
@@ -107,8 +107,8 @@
                     },
                     { text: 'Description', align: 'left', sortable: false, value: 'description' }
                 ],
-                article:[],
-                active: null
+                article:{},
+                active: null,
             }
         },
         created(){
