@@ -15,6 +15,27 @@
                         </v-flex>
                         <v-flex xs12 px-4>
                             <v-layout row wrap align-baseline>
+                                <v-flex xs12>
+                                    <social-sharing url="https://vuejs.org/" inline-template>
+                                        <div>
+                                            <network network="facebook">
+                                                <i class="fab fa-facebook-square" style="font-size:36px;color:#3e5b99"></i>
+                                            </network>
+                                            <network network="googleplus">
+                                                <i class="fab fa-google-plus-square" style="font-size:36px;color:#db4437"></i>
+                                            </network>
+                                            <network network="linkedin">
+                                                <i class="fab fa-linkedin" style="font-size:36px;color:#0077b5"></i>
+                                            </network>
+                                            <network network="pinterest">
+                                                <i class="fab fa-pinterest-square" style="font-size:36px;color:#bd081c"></i>
+                                            </network>
+                                            <network network="twitter">
+                                                <i class="fab fa-twitter-square" style="font-size:36px;color:#1c94e0"></i>
+                                            </network>
+                                        </div>
+                                    </social-sharing>
+                                </v-flex>
                                 <v-flex xs3>
                                     Cena:
                                 </v-flex>
@@ -94,8 +115,12 @@
 
 <script>
     import axios from 'axios'
+    import SocialSharing from 'vue-social-sharing'
 
     export default {
+        components:{
+            'social-sharing':SocialSharing
+        },
         data() {
             return {
                 headers: [
