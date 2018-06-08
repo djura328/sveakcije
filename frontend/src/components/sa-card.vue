@@ -1,31 +1,33 @@
 <template>
-    <v-card>
-        <!--<v-card-media :src="'/static/images/' + article.img" class="custom-card" height="162px"></v-card-media>-->
-        <v-card-media :src="'http://localhost:8000/storage/small/' + article.img" class="custom-card" height="162px"></v-card-media>
-        <v-card-title primary-title>
-            <v-layout row wrap>
-                <v-flex xs12>
-                    <div class="caption" style="color:gray">Gigatron</div>
-                </v-flex>
-                <v-flex xs12>
-                    {{article.name}}
-                </v-flex>
-                <v-flex xs6 pa-0>
-                    <div class="caption">
-                        <span style="color: #ff6a00;"><b>{{article.price_discount.toLocaleString('de-DE')}} RSD</b></span><br>
-                        <span style="text-decoration: line-through;">{{article.price.toLocaleString('de-DE')}} RSD</span>
-                    </div>
-                </v-flex>
-                <v-flex xs6 pa-0 justify-center>
-                    <sa-rating></sa-rating>
-                </v-flex>
-            </v-layout>
-        </v-card-title>
-        <div class="stick">
-            <span>{{article.discount}}%</span>
-            <v-icon size="44px" color="red">local_offer</v-icon>
-        </div>
-    </v-card>
+    <router-link :to="{name: 'article-id', params: {'id': article.id}}">
+        <v-card>
+            <!--<v-card-media :src="'/static/images/' + article.img" class="custom-card" height="162px"></v-card-media>-->
+            <v-card-media :src="'http://localhost:8000/storage/small/' + article.img" class="custom-card" height="162px"></v-card-media>
+            <v-card-title primary-title>
+                <v-layout row wrap>
+                    <v-flex xs12>
+                        <div class="caption" style="color:gray">Gigatron</div>
+                    </v-flex>
+                    <v-flex xs12>
+                        {{article.name}}
+                    </v-flex>
+                    <v-flex xs6 pa-0>
+                        <div class="caption">
+                            <span style="color: #ff6a00;"><b>{{article.price_discount.toLocaleString('de-DE')}} RSD</b></span><br>
+                            <span style="text-decoration: line-through;">{{article.price.toLocaleString('de-DE')}} RSD</span>
+                        </div>
+                    </v-flex>
+                    <v-flex xs6 pa-0 justify-center>
+                        <sa-rating></sa-rating>
+                    </v-flex>
+                </v-layout>
+            </v-card-title>
+            <div class="stick">
+                <span>{{article.discount}}%</span>
+                <v-icon size="44px" color="red">local_offer</v-icon>
+            </div>
+        </v-card>
+    </router-link>
 </template>
 
 <script>
