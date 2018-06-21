@@ -4,7 +4,7 @@
             <v-layout row wrap>
                 <v-flex sm4>
                     <v-card>
-                        <v-card-media v-if="article.img" :src="'http://localhost:8000/storage/' + article.img" height="400px"></v-card-media>
+                        <v-card-media v-if="article.img" :src="'http://beodzetpotrcko.rs/api/public/storage/' + article.img" height="400px"></v-card-media>
                     </v-card>
                 </v-flex>
                 <v-flex sm8>
@@ -39,21 +39,21 @@
                                 <v-flex xs3>
                                     Cena:
                                 </v-flex>
-                                <v-flex xs9 style="text-decoration: line-through;" v-if="article.price">
+                                <v-flex xs9 style="text-decoration: line-through;font-size: 16px;" v-if="article.price">
                                     {{article.price.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}} RSD
                                 </v-flex>
                                 <v-flex xs3>
                                     Cena sa popustom:
                                 </v-flex>
-                                <v-flex class="headline xs9 blue--text" v-if="article.price_discount">
-                                    <b>{{article.price_discount.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}} RSD</b>
-                                    <div>
-                                        <v-btn class="subheading ma-0 pa-0" small color="error">{{article.discount}}%</v-btn>
+                                <v-flex class="headline xs9 blue--text" v-if="article.price_discount" style="font-weight: 400;">
+                                    {{article.price_discount.toLocaleString('de-DE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}} RSD
+                                    <div class="subheading" style="background-color: #e40f0f;color: white;width: 78px;text-align: center;border-radius: 4px;">
+                                       {{article.discount}}%
                                     </div>
                                 </v-flex>
                                 <v-flex xs3>Prodavac:</v-flex>
                                 <v-flex xs9 v-if="article.company">
-                                    {{article.company.name}}
+                                    <div style="font-size: 16px;">{{article.company.name}}</div>
                                 </v-flex>
                                 <v-flex xs3>Link:</v-flex>
                                 <v-flex xs9 v-if="article.company">
@@ -62,7 +62,7 @@
                                 <v-flex xs3></v-flex>
                                 <v-flex xs9 v-if="article.company">
                                     <a :href="article.link" target="_blank">
-                                        <v-btn color="error" dark class="ma-0 pa-0">Link ponude</v-btn>
+                                        <v-btn color="error" dark class="ma-0 pa-0" outline>Link ponude</v-btn>
                                     </a>
                                 </v-flex>
                             </v-layout>
@@ -114,7 +114,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from '@/plugins/axios'
     import SocialSharing from 'vue-social-sharing'
 
     export default {
@@ -137,7 +137,7 @@
             }
         },
         created(){
-            axios.get('http://localhost:8000/api/articles/' + this.$route.params.id).then(resp => {
+            axios.get('articles/' + this.$route.params.id).then(resp => {
                 this.article = resp.data
             })
         }

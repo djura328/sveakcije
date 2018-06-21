@@ -120,7 +120,7 @@
 </template>
 
 <script>
-    import axios from 'axios'
+    import axios from '@/plugins/axios'
 
     export default{
         data(){
@@ -161,10 +161,10 @@
 
                     if (this.$refs.fileInput.files[0] !== undefined) {
                         // Upload image ----------------------------------------------------------- >
-                        axios.post('http://localhost:8000/api/upload-image', formData).then(response => {
+                        axios.post('upload-image', formData).then(response => {
                             const nameImage = response.data.name
                             // Save article ----------------------------------------------------------- >
-                            axios.post('http://localhost:8000/api/articles', {
+                            axios.post('articles', {
                                 name: this.name,
                                 description: this.description,
                                 link: this.link,
@@ -186,12 +186,12 @@
                 }
             },
             getCategory(){
-                axios.get('http://localhost:8000/api/category').then(res => {
+                axios.get('category').then(res => {
                     this.itemsCategory = res.data
                 })
             },
             getCompany(){
-                axios.get('http://localhost:8000/api/company').then(res => {
+                axios.get('company').then(res => {
                     this.itemsCompany = res.data
                 })
             }
