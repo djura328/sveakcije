@@ -2,11 +2,12 @@
     <sa-layout>
         <v-layout row wrap>
             <v-flex lg12>
-                <sa-carousel :perPage="1"
-                             :autoplayHoverPause="true"
-                             :autoplay="true"
-                             :loop="true"
-                             :paginationEnabled="false"
+                <sa-carousel
+                     :perPage="1"
+                     :autoplayHoverPause="true"
+                     :autoplay="true"
+                     :loop="true"
+                     :paginationEnabled="false"
                 >
                     <template v-for="(slide,i) in slides">
                         <sa-slide>
@@ -16,30 +17,12 @@
                     </template>
                 </sa-carousel>
             </v-flex>
-            <!--<v-flex lg3 pl-3>
-                <v-layout row wrap fill-height>
-                    <v-flex xs12 d-flex>
-                        <v-card class="elevation-0">
-                            <v-card-media src="https://www.w3schools.com/howto/img_nature_wide.jpg" height="100%"></v-card-media>
-                        </v-card>
-                    </v-flex>
-                    <v-flex xs12 d-flex>
-                        <v-card class="elevation-0">
-                            <v-card-media src="https://www.w3schools.com/howto/img_snow_wide.jpg" height="100%"></v-card-media>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-            </v-flex>-->
         </v-layout>
         <v-container grid-list-md text-xs-center>
-            <v-layout row wrap>
-                <v-flex class="lg11 offset-lg1 text-lg-left pl-2 py-2">
-                    <div style="width: 240px; border-bottom: 3px solid #ec2121;font-size: 22px;color: #525252;font-weight: 300;">Preporučujemo za Vas</div>
-                </v-flex>
-            </v-layout>
             <v-layout row wrap >
                 <v-flex lg1></v-flex>
                 <v-flex lg10 pa-2>
+                    <sa-category title="Preporučujemo za Vas"></sa-category>
                     <v-layout row wrap>
                         <template v-for="article in articles">
                             <v-flex lg3>
@@ -59,12 +42,14 @@
     import Card from '../components/sa-card'
     import {mapState, mapGetters} from 'vuex'
     import { Carousel, Slide } from 'vue-carousel'
+    import Category from '../components/sa-category'
 
     export default{
         components: {
             'sa-card': Card,
             'sa-carousel': Carousel,
-            'sa-slide': Slide
+            'sa-slide': Slide,
+            'sa-category': Category,
         },
         data(){
             return{
