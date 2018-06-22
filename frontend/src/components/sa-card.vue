@@ -1,8 +1,7 @@
 <template>
     <router-link :to="{name: 'article-id', params: {'id': article.id}}">
         <v-card>
-            <!--<v-card-media :src="'/static/images/' + article.img" class="custom-card" height="162px"></v-card-media>-->
-            <v-card-media :src="'http://beodzetpotrcko.rs/api/public/storage/small/' + article.img" class="custom-card" height="162px"></v-card-media>
+            <v-card-media :src="cfg.STORAGE + '/small/' + article.img" class="custom-card" height="162px"></v-card-media>
             <v-card-title primary-title>
                 <v-layout row wrap>
                     <v-flex xs12>
@@ -32,6 +31,7 @@
 
 <script>
     import Rating from '../components/sa-rating'
+    import cfg from '../config'
 
     export default{
         props: {
@@ -39,6 +39,11 @@
         },
         components: {
             'sa-rating': Rating
+        },
+        data(){
+            return{
+                cfg:cfg
+            }
         }
     }
 </script>

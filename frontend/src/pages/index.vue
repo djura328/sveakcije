@@ -33,6 +33,36 @@
                 </v-flex>
                 <v-flex lg1></v-flex>
             </v-layout>
+
+            <v-layout row wrap >
+                <v-flex lg1></v-flex>
+                <v-flex lg10 pa-2>
+                    <sa-category title="Najnovije"></sa-category>
+                    <v-layout row wrap>
+                        <template v-for="article in articles">
+                            <v-flex lg3>
+                                <sa-card :article="article"></sa-card>
+                            </v-flex>
+                        </template>
+                    </v-layout>
+                </v-flex>
+                <v-flex lg1></v-flex>
+            </v-layout>
+
+            <v-layout row wrap >
+                <v-flex lg1></v-flex>
+                <v-flex lg10 pa-2>
+                    <sa-category title="Istaknuti"></sa-category>
+                    <v-layout row wrap>
+                        <template v-for="article in articles">
+                            <v-flex lg3>
+                                <sa-card :article="article"></sa-card>
+                            </v-flex>
+                        </template>
+                    </v-layout>
+                </v-flex>
+                <v-flex lg1></v-flex>
+            </v-layout>
         </v-container>
     </sa-layout>
 </template>
@@ -71,7 +101,7 @@
         },
         methods:{
             getArticles(){
-                axios.get('articles').then(res => {
+                axios.get('/articles').then(res => {
                     this.articles = res.data
                 })
             }

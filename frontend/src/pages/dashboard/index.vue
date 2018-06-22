@@ -129,18 +129,18 @@
         },
         methods:{
             getArticles(){
-                axios.get('articles').then(res => {
+                axios.get('/articles').then(res => {
                     console.log(res.data)
                     this.articles = res.data
                 })
             },
             getcategory_id(){
-                axios.get('category').then(res => {
+                axios.get('/category').then(res => {
                     this.itemscategory_id = res.data
                 })
             },
             getcompany_id(){
-                axios.get('company').then(res => {
+                axios.get('/company').then(res => {
                     this.itemscompany_id = res.data
                 })
             },
@@ -149,7 +149,7 @@
                 this.itemEdit = item
             },
             save(){
-                axios.put('articles/' + this.itemEdit.id, this.itemEdit
+                axios.put('/articles/' + this.itemEdit.id, this.itemEdit
                 ).then(res => {
                     this.dialog = false
                 })

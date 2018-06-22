@@ -161,10 +161,10 @@
 
                     if (this.$refs.fileInput.files[0] !== undefined) {
                         // Upload image ----------------------------------------------------------- >
-                        axios.post('upload-image', formData).then(response => {
+                        axios.post('/upload-image', formData).then(response => {
                             const nameImage = response.data.name
                             // Save article ----------------------------------------------------------- >
-                            axios.post('articles', {
+                            axios.post('/articles', {
                                 name: this.name,
                                 description: this.description,
                                 link: this.link,
@@ -186,12 +186,12 @@
                 }
             },
             getCategory(){
-                axios.get('category').then(res => {
+                axios.get('/category').then(res => {
                     this.itemsCategory = res.data
                 })
             },
             getCompany(){
-                axios.get('company').then(res => {
+                axios.get('/company').then(res => {
                     this.itemsCompany = res.data
                 })
             }

@@ -137,7 +137,7 @@
             }
         },
         created(){
-            axios.get('articles/' + this.$route.params.id).then(resp => {
+            axios.get('/articles/' + this.$route.params.id).then(resp => {
                 this.article = resp.data
             })
         }
