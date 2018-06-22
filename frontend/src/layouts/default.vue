@@ -29,10 +29,12 @@
                 dark
                 app
                 fixed
+                dense
         >
             <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-                <span class="hidden-sm-and-down" style="position: absolute;top: 12px;"><img src="static/images/sveakcije-w.png"/></span>
+                <span class="title">SveAkcije</span>
+                <!--<span class="hidden-sm-and-down" style="position: absolute;top: 12px;"><img src="static/images/sveakcije-w.png"/></span>-->
                 <!--<span class="hidden-sm-and-down">Google Contacts</span>-->
             </v-toolbar-title>
             <v-spacer></v-spacer>
@@ -56,6 +58,88 @@
         </v-content>
     </v-app>
 </template>
+<!--<template>
+    <v-app
+            id="inspire"
+            dark
+    >
+        <v-navigation-drawer
+                v-model="drawer"
+                fixed
+                clipped
+                app
+        >
+            <v-list dense>
+                <v-list-tile v-for="item in items" :key="item.text" @click="">
+                    <v-list-tile-action>
+                        <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-content>
+                        <v-list-tile-title>
+                            {{ item.text }}
+                        </v-list-tile-title>
+                    </v-list-tile-content>
+                </v-list-tile>
+                <v-subheader class="mt-3 grey&#45;&#45;text text&#45;&#45;darken-1">SUBSCRIPTIONS</v-subheader>
+                <v-list>
+                    <template v-for="item in items">
+                        <v-list-tile :key="item.text" @click="">
+                            <v-list-tile-action>
+                                <v-icon>{{ item.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-content>
+                                <router-link :to="{ name: item.link }" style="display: inline-flex">
+                                    <v-list-tile-title>
+                                        {{ item.text }}
+                                    </v-list-tile-title>
+                                </router-link>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </template>
+                </v-list>
+                <v-list-tile class="mt-3" @click="">
+                    <v-list-tile-action>
+                        <v-icon color="grey darken-1">add_circle_outline</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-title class="grey&#45;&#45;text text&#45;&#45;darken-1">Browse Channels</v-list-tile-title>
+                </v-list-tile>
+                <v-list-tile @click="">
+                    <v-list-tile-action>
+                        <v-icon color="grey darken-1">settings</v-icon>
+                    </v-list-tile-action>
+                    <v-list-tile-title class="grey&#45;&#45;text text&#45;&#45;darken-1">Manage Subscriptions</v-list-tile-title>
+                </v-list-tile>
+            </v-list>
+        </v-navigation-drawer>
+        <v-toolbar
+                color="red"
+                dense
+                fixed
+                clipped-left
+                app
+        >
+            <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+            <v-icon class="mx-3">fab fa-youtube</v-icon>
+            <v-toolbar-title class="mr-5 align-center">
+                <span class="title">Youtube</span>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-layout row align-center style="max-width: 650px">
+                <v-text-field
+                        :append-icon-cb="() => {}"
+                        placeholder="Search..."
+                        single-line
+                        append-icon="search"
+                        color="white"
+                        hide-details
+                ></v-text-field>
+            </v-layout>
+        </v-toolbar>
+        <v-content>
+            <slot></slot>
+        </v-content>
+    </v-app>
+</template>-->
 
 <script>
     export default {
