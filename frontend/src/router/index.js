@@ -5,6 +5,7 @@ import Article from '@/pages/article'
 import Dashboard from '@/pages/dashboard/insert'
 import Show from '@/pages/dashboard/index'
 import Login from '@/pages/login'
+import Category from '@/pages/category'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
         path: '/login',
         name: 'login',
         component: Login
+    },
+    {
+       path: '/category/:id',
+       name: 'category-id',
+       component: Category
     }
   ]
 })
