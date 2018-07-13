@@ -12,4 +12,9 @@ class Article extends Model
     {
         return $this->hasOne('App\Company', 'id', 'company_id');
     }
+
+    public function category()
+    {
+        return $this->hasOne('App\Category', 'id', 'category_id');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Article;
 
 class CategoryController extends Controller
 {
@@ -46,7 +47,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return Article::where('category_id', $id)->get();
     }
 
     /**
@@ -81,5 +82,21 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function menu($elements, $parentId = 0)
+    {
+        $elements = Category::where('perent', $parentId)->get();
+        $branch = array();
+        foreach ($elements as $element) {
+            if ($element['perent'] == $parentId) {
+                $children = $this->menu($elements, $element['id']);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+        return $branch;
     }
 }

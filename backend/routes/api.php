@@ -20,4 +20,6 @@ Route::resource('articles', 'ArticleController');
 Route::post('upload-image', 'ArticleController@uplaodImage');
 
 Route::resource('category', 'CategoryController');
+Route::get('category/{id}', 'CategoryController@category');
+Route::get('category-menu', 'CategoryController@menu');
 Route::resource('company', 'CompanyController');
