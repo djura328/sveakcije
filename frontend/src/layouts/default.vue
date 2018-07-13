@@ -8,6 +8,66 @@
         >
             <v-list dense>
                 <template v-for="item in items">
+                    <v-layout
+                            v-if="item.heading"
+                            :key="item.heading"
+                            row
+                            align-center
+                    >
+                        <v-flex xs6>
+                            <v-subheader v-if="item.heading">
+                                {{ item.heading }}
+                            </v-subheader>
+                        </v-flex>
+                    </v-layout>
+                    <v-divider
+                            v-else-if="item.divider"
+                            dark
+                            class="my-3"
+                    ></v-divider>
+                    <v-list-group
+                            v-else-if="item.children"
+                            v-model="item.model"
+                            :key="item.text"
+                            :append-icon="item.model ? item.icon : item['icon-alt']"
+                    >
+                        <v-list-tile slot="activator">
+                            <v-list-tile-content>
+                                <router-link :to="{ name: item.link }" style="display: inline-flex">
+                                    <v-list-tile-title>
+                                        {{ item.text }}
+                                    </v-list-tile-title>
+                                </router-link>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                        <v-list-tile
+                                v-for="(child, i) in item.children"
+                                :key="i"
+                                @click=""
+                        >
+                            <v-list-tile-action v-if="child.icon">
+                                <v-icon>{{ child.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-content>
+                                <router-link :to="{ name: item.link }" style="display: inline-flex">
+                                    <v-list-tile-title>
+                                        {{ child.text }}
+                                    </v-list-tile-title>
+                                </router-link>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </v-list-group>
+                    <v-list-tile v-else :key="item.text" @click="">
+                        <v-list-tile-content>
+                            <router-link :to="{ name: item.link }" style="display: inline-flex">
+                                <v-list-tile-title>
+                                    {{ item.text }}
+                                </v-list-tile-title>
+                            </router-link>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </template>
+                <!--<template v-for="item in items">
                     <v-list-tile :key="item.text" @click="">
                         <v-list-tile-action>
                             <v-icon>{{ item.icon }}</v-icon>
@@ -20,7 +80,7 @@
                             </router-link>
                         </v-list-tile-content>
                     </v-list-tile>
-                </template>
+                </template>-->
             </v-list>
         </v-navigation-drawer>
         <v-toolbar
@@ -142,22 +202,69 @@
 </template>-->
 
 <script>
+    import axios from '@/plugins/axios'
+
     export default {
         data: () => ({
             drawer: null,
             items: [
                 { icon: 'history', text: 'Home', link: 'index' },
-                { icon: 'contacts', text: 'Insert article'},
+                { divider: true },
+                { heading: 'Kategorije' }
+                /*{ icon: 'contacts', text: 'Insert article'},
                 { icon: 'content_copy', text: 'Duplicates' },
                 { icon: 'settings', text: 'Settings' },
                 { icon: 'chat_bubble', text: 'Send feedback' },
                 { icon: 'help', text: 'Help' },
                 { icon: 'phonelink', text: 'App downloads' },
-                { icon: 'keyboard', text: 'Go to the old version' }
+                { icon: 'keyboard', text: 'Go to the old version' }*/
             ]
         }),
         props: {
             source: String
+        },
+        created(){
+            axios.get('/category-menu').then(resp => {
+                console.log(resp.data)
+                resp.data.forEach(item => {
+                    if(item.hasOwnProperty('children')){
+                        let childrenArr = []
+                        item.children.forEach(it => {
+                            childrenArr.push({
+                                icon: '',
+                                text: it.name
+                            })
+                        })
+
+                        this.items.push({
+                            'text': item.name,
+                            link: item.name,
+                            icon: 'keyboard_arrow_up',
+                            'icon-alt': 'keyboard_arrow_down',
+                            model: false,
+                            children: childrenArr
+                        })
+                    }
+                    else{
+                        this.items.push({
+                            text: item.name,
+                            icon: 'contacts',
+                            link: item.name
+                        })
+                    }
+                })
+
+                /*{
+                    icon: 'keyboard_arrow_up',
+                        'icon-alt': 'keyboard_arrow_down',
+                    text: 'Labels',
+                    model: true,
+                    children: [
+                        { icon: 'add', text: 'Create label' }
+                    ]
+                },*/
+
+            })
         }
     }
 </script>
